@@ -7,12 +7,6 @@ import Success from "./Success";
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
 
-  const nextStep = () => {
-    setStep(step + 1);
-  };
-  const prevStep = () => {
-    setStep(step - 1);
-  };
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -23,9 +17,18 @@ const MultiStepForm = () => {
     confirmPassword: "",
     birth: "",
   });
-  const updateFormData = (text, value) => {
-    setFormData();
+
+  const nextStep = () => {
+    setStep(step + 1);
   };
+  const prevStep = () => {
+    setStep(step - 1);
+  };
+
+  const updateFormData = (key, value) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
+
   console.log(formData);
 
   if (step === 1) {
@@ -37,9 +40,23 @@ const MultiStepForm = () => {
       />
     );
   } else if (step === 2) {
-    return <SecondStep nextStep={nextStep} prevStep={prevStep} />;
+    return (
+      <SecondStep
+        nextStep={nextStep}
+        prevStep={prevStep}
+        formData={formData}
+        updateFormData={updateFormData}
+      />
+    );
   } else if (step === 3) {
-    return <ThirdStep nextStep={nextStep} prevStep={prevStep} />;
+    return (
+      <ThirdStep
+        nextStep={nextStep}
+        prevStep={prevStep}
+        formData={formData}
+        updateFormData={updateFormData}
+      />
+    );
   } else {
     return <Success prevStep={prevStep} />;
   }

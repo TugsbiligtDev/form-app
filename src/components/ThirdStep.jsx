@@ -2,7 +2,14 @@ import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-const ThirdStep = ({ nextStep, prevStep }) => {
+const ThirdStep = ({ nextStep, prevStep, formData, updateFormData }) => {
+  const handleSubmit = () => {
+    const validationErrors = () => {};
+    if (!formData.birth) {
+      validationErrors.birth = "Please select a date.";
+    }
+  };
+
   return (
     <div>
       <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
@@ -17,7 +24,13 @@ const ThirdStep = ({ nextStep, prevStep }) => {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Input type="date" text="Date of birth " placeholder="--/--/--" />
+            <Input
+              type="date"
+              text="Date of birth "
+              placeholder="--/--/--"
+              value={formData.birth}
+              onChange={(e) => updateFormData("birth", e.target.value)}
+            />
             <p className="text-[#334155] text-sm font-semibold leading-4">
               Profile image <span className="text-[#E14942]">*</span>
             </p>

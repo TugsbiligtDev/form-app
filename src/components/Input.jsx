@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ text, placeholder, type, value, onChange }) => {
+const Input = ({ text, placeholder, type, value, onChange, error }) => {
   return (
     <div className="flex flex-col gap-2">
       <p className="text-[#334155] text-sm font-semibold leading-4">
@@ -13,6 +13,7 @@ const Input = ({ text, placeholder, type, value, onChange }) => {
         value={value}
         onChange={onChange}
       />
+      {/* <p className="text-[#E14942] text-sm font-normal">{error}</p> */}
     </div>
   );
 };

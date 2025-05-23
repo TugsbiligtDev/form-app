@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-const FirstStep = ({ nextStep }) => {
+const FirstStep = ({ nextStep, formData, updateFormData }) => {
   return (
     <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
       <div>
@@ -16,9 +16,15 @@ const FirstStep = ({ nextStep }) => {
           </p>
         </div>
         <div className="flex flex-col gap-3">
-          <Input type="text" text="First name" value="Your first name" />
-          <Input type="text" text="Last name " value="Your last name" />
-          <Input type="text" text="Username " value="Your username" />
+          <Input
+            type="text"
+            text="First name"
+            placeholder="Your first name"
+            value={formData.firstName}
+            onChange={(e) => updateFormData("firstName", e.target.value)}
+          />
+          <Input type="text" text="Last name " placeholder="Your last name" />
+          <Input type="text" text="Username " placeholder="Your username" />
         </div>
       </div>
 

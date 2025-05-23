@@ -21,13 +21,13 @@ const SecondStep = ({ nextStep, prevStep }) => {
             <Input
               type="number"
               text="Phone number "
-              value="Your phone number"
+              placeholder="Your phone number"
             />
             <Input type="password" text="Password " value="Your password" />
             <Input
               type="password"
               text="Confirm password "
-              value="Confirm password"
+              placeholder="Confirm password"
             />
           </div>
         </div>

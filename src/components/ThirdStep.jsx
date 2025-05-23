@@ -17,7 +17,7 @@ const ThirdStep = ({ nextStep, prevStep }) => {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Input type="date" text="Date of birth " value="--/--/--" />
+            <Input type="date" text="Date of birth " placeholder="--/--/--" />
             <p className="text-[#334155] text-sm font-semibold leading-4">
               Profile image <span className="text-[#E14942]">*</span>
             </p>

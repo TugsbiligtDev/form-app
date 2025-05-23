@@ -23,9 +23,19 @@ const MultiStepForm = () => {
     confirmPassword: "",
     birth: "",
   });
+  const updateFormData = (text, value) => {
+    setFormData();
+  };
+  console.log(formData);
 
   if (step === 1) {
-    return <FirstStep nextStep={nextStep} />;
+    return (
+      <FirstStep
+        nextStep={nextStep}
+        formData={formData}
+        updateFormData={updateFormData}
+      />
+    );
   } else if (step === 2) {
     return <SecondStep nextStep={nextStep} prevStep={prevStep} />;
   } else if (step === 3) {

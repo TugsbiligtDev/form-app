@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ text, value, type }) => {
+const Input = ({ text, placeholder, type, value, onChange }) => {
   return (
     <div className="flex flex-col gap-2">
       <p className="text-[#334155] text-sm font-semibold leading-4">
@@ -8,8 +8,10 @@ const Input = ({ text, value, type }) => {
       </p>
       <input
         type={type}
-        placeholder={value}
+        placeholder={placeholder}
         className="border border-[#8B8E95] rounded-lg p-2 outline-[#0CA5E9] text-base font-normal"
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

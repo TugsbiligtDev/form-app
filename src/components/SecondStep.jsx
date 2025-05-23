@@ -1,7 +1,8 @@
 import React from "react";
 import Input from "./Input";
+import Button from "./Button";
 
-const SecondStep = () => {
+const SecondStep = ({ nextStep, prevStep }) => {
   return (
     <div>
       <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
@@ -16,17 +17,21 @@ const SecondStep = () => {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Input text="Email " value="Your email" />
-            <Input text="Phone number " value="Your phone number" />
-            <Input text="Password " value="Your password" />
-            <Input text="Confirm password " value="Confirm password" />
+            <Input type="email" text="Email " value="Your email" />
+            <Input
+              type="number"
+              text="Phone number "
+              value="Your phone number"
+            />
+            <Input type="password" text="Password " value="Your password" />
+            <Input
+              type="password"
+              text="Confirm password "
+              value="Confirm password"
+            />
           </div>
         </div>
-        <div className="flex justify-center items-center w-full bg-[#121316] rounded-md text-white py-3 px-2.5 gap-1">
-          <p>Continue</p>
-          <p>1/3</p>
-          <img src="./chevron_right.svg" alt="right icon" />
-        </div>
+        <Button step={2} onBack={prevStep} onNext={nextStep} />
       </div>
     </div>
   );

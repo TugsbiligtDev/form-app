@@ -1,7 +1,8 @@
 import React from "react";
 import Input from "./Input";
+import Button from "./Button";
 
-const ThirdStep = () => {
+const ThirdStep = ({ nextStep, prevStep }) => {
   return (
     <div>
       <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
@@ -16,19 +17,17 @@ const ThirdStep = () => {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Input text="Date of birth " value="Your first name" />
-            <Input text="Profile image" value="Your first name" />
-            <div className="w-full h-[180px] rounded-md bg-[#7F7F800D] flex flex-col justify-center items-center">
+            <Input type="date" text="Date of birth " value="--/--/--" />
+            <p className="text-[#334155] text-sm font-semibold leading-4">
+              Profile image <span className="text-[#E14942]">*</span>
+            </p>
+            <div className="w-full h-[180px] rounded-md bg-[#7F7F800D] flex flex-col justify-center items-center gap-2">
               <img src="./pic.svg" alt="pic" />
-              <p>Add image</p>
+              <p className="text-[#09090B] text-sm font-medium">Add image</p>
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center w-full bg-[#121316] rounded-md text-white py-3 px-2.5 gap-1">
-          <p>Continue</p>
-          <p>1/3</p>
-          <img src="./chevron_right.svg" alt="right icon" />
-        </div>
+        <Button step={3} onBack={prevStep} onNext={nextStep} />
       </div>
     </div>
   );

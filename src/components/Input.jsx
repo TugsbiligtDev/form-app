@@ -13,7 +13,7 @@ const Input = ({ text, placeholder, type, value, onChange, error }) => {
         value={value}
         onChange={onChange}
       />
-      {/* <p className="text-[#E14942] text-sm font-normal">{error}</p> */}
+      <p className="text-[#E14942] text-sm font-normal">{error}</p>
     </div>
   );
 };

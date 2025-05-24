@@ -2,24 +2,7 @@ import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-const FirstStep = ({ nextStep, formData, updateFormData }) => {
-  const handleSubmit = () => {
-    const validationErrors = () => {};
-    if (!formData.firstName) {
-      validationErrors.firstName =
-        "First name cannot contain special characters or numbers.";
-    }
-
-    if (!formData.lastName) {
-      validationErrors.lastName =
-        "Last name cannot contain special characters or numbers.";
-    }
-    if (!formData.userName) {
-      validationErrors.userName =
-        "This username is already taken. Please choose another one.";
-    }
-  };
-
+const FirstStep = ({ nextStep, formData, updateFormData, errors }) => {
   return (
     <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
       <div>
@@ -39,6 +22,7 @@ const FirstStep = ({ nextStep, formData, updateFormData }) => {
             placeholder="Your first name"
             value={formData.firstName}
             onChange={(e) => updateFormData("firstName", e.target.value)}
+            error={errors.firstName}
           />
           <Input
             type="text"
@@ -46,6 +30,7 @@ const FirstStep = ({ nextStep, formData, updateFormData }) => {
             placeholder="Your last name"
             value={formData.lastName}
             onChange={(e) => updateFormData("lastName", e.target.value)}
+            error={errors.lastName}
           />
           <Input
             type="text"
@@ -53,6 +38,7 @@ const FirstStep = ({ nextStep, formData, updateFormData }) => {
             placeholder="Your username"
             value={formData.userName}
             onChange={(e) => updateFormData("userName", e.target.value)}
+            error={errors.userName}
           />
         </div>
       </div>

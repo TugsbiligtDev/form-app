@@ -2,24 +2,13 @@ import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-const SecondStep = ({ nextStep, prevStep, formData, updateFormData }) => {
-  const handleSubmit = () => {
-    const validationErrors = () => {};
-    if (!formData.email) {
-      validationErrors.email = "Please provide a valid email address.";
-    }
-    if (!formData.phoneNumber) {
-      validationErrors.phoneNumber = "Please enter a valid phone number.";
-    }
-    if (!formData.password) {
-      validationErrors.password = "Password must include letters and numbers.";
-    }
-    if (!formData.confirmPassword) {
-      validationErrors.confirmPassword =
-        "Passwords do not match. Please try again.";
-    }
-  };
-
+const SecondStep = ({
+  nextStep,
+  prevStep,
+  formData,
+  updateFormData,
+  errors,
+}) => {
   return (
     <div>
       <div className="w-[480px] h-[655px] bg-white rounded-md p-8 flex flex-col justify-between">
@@ -40,6 +29,7 @@ const SecondStep = ({ nextStep, prevStep, formData, updateFormData }) => {
               placeholder="Your email"
               value={formData.email}
               onChange={(e) => updateFormData("email", e.target.value)}
+              error={errors.email}
             />
             <Input
               type="number"
@@ -47,6 +37,7 @@ const SecondStep = ({ nextStep, prevStep, formData, updateFormData }) => {
               placeholder="Your phone number"
               value={formData.phoneNumber}
               onChange={(e) => updateFormData("phoneNumber", e.target.value)}
+              error={errors.phoneNumber}
             />
             <Input
               type="password"
@@ -54,6 +45,7 @@ const SecondStep = ({ nextStep, prevStep, formData, updateFormData }) => {
               placeholder="Your password"
               value={formData.password}
               onChange={(e) => updateFormData("password", e.target.value)}
+              error={errors.password}
             />
             <Input
               type="password"
@@ -63,6 +55,7 @@ const SecondStep = ({ nextStep, prevStep, formData, updateFormData }) => {
               onChange={(e) =>
                 updateFormData("confirmPassword", e.target.value)
               }
+              error={errors.confirmPassword}
             />
           </div>
         </div>

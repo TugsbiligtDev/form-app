@@ -9,7 +9,9 @@ const Input = ({ text, placeholder, type, value, onChange, error }) => {
       <input
         type={type}
         placeholder={placeholder}
-        className="border border-[#8B8E95] rounded-lg p-2 outline-[#0CA5E9] text-base font-normal"
+        className={`border ${
+          !error ? "border-[#8B8E95]" : "border-[#E14942]"
+        }  rounded-lg p-2 outline-[#0CA5E9] text-base font-normal`}
         value={value}
         onChange={onChange}
       />

@@ -32,7 +32,6 @@ const MultiStepForm = () => {
           "First name cannot contain special characters or numbers.";
       }
 
-      // Check if last name contains special characters or numbers
       if (!formData.lastName.trim() || /[^a-zA-Z\s]/.test(formData.lastName)) {
         newErrors.lastName =
           "Last name cannot contain special characters or numbers.";
@@ -49,7 +48,11 @@ const MultiStepForm = () => {
         newErrors.email = "Please provide a valid email address.";
       }
 
-      if (!formData.phoneNumber.trim() || formData.phoneNumber.length < 8) {
+      if (
+        !formData.phoneNumber.trim() ||
+        formData.phoneNumber.length < 8 ||
+        formData.phoneNumber.length > 8
+      ) {
         newErrors.phoneNumber = "Please enter a valid phone number.";
       }
 

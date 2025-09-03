@@ -101,8 +101,6 @@ const MultiStepForm = () => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  console.log(formData);
-
   if (step === 1) {
     return (
       <FirstStep

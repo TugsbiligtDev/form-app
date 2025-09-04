@@ -1,6 +1,6 @@
-import React from "react";
+const Success = ({ formData }) => {
+  console.log("Form Data:", formData);
 
-const Success = () => {
   return (
     <div className="w-[480px] h-auto bg-white rounded-md p-8 flex flex-col justify-between">
       <div className="flex flex-col gap-2 pb-7">

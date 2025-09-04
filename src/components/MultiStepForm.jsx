@@ -3,6 +3,7 @@ import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import Success from "./Success";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -16,6 +17,7 @@ const MultiStepForm = () => {
     password: "",
     confirmPassword: "",
     birth: "",
+    profileImage: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -51,7 +53,8 @@ const MultiStepForm = () => {
       if (
         !formData.phoneNumber.trim() ||
         formData.phoneNumber.length < 8 ||
-        formData.phoneNumber.length > 8
+        formData.phoneNumber.length > 8 ||
+        !/^\d+$/.test(formData.phoneNumber)
       ) {
         newErrors.phoneNumber = "Please enter a valid phone number.";
       }
@@ -76,6 +79,17 @@ const MultiStepForm = () => {
     if (step === 3) {
       if (!formData.birth.trim()) {
         newErrors.birth = "Please select a date.";
+      } else {
+        const selectedDate = new Date(formData.birth);
+        const today = new Date();
+        today.setHours(23, 59, 59, 999);
+        if (selectedDate > today) {
+          newErrors.birth = "Please select a past date, not a future date.";
+        }
+      }
+
+      if (!formData.profileImage) {
+        newErrors.profileImage = "Please upload a profile image.";
       }
     }
 
@@ -101,37 +115,95 @@ const MultiStepForm = () => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const pageVariants = {
+    initial: { opacity: 0, x: 20 },
+    in: { opacity: 1, x: 0 },
+    out: { opacity: 0, x: -20 },
+  };
+
+  const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.3,
+  };
+
   if (step === 1) {
     return (
-      <FirstStep
-        nextStep={nextStep}
-        formData={formData}
-        updateFormData={updateFormData}
-        errors={errors}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="step1"
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+        >
+          <FirstStep
+            nextStep={nextStep}
+            formData={formData}
+            updateFormData={updateFormData}
+            errors={errors}
+          />
+        </motion.div>
+      </AnimatePresence>
     );
   } else if (step === 2) {
     return (
-      <SecondStep
-        nextStep={nextStep}
-        prevStep={prevStep}
-        formData={formData}
-        updateFormData={updateFormData}
-        errors={errors}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="step2"
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+        >
+          <SecondStep
+            nextStep={nextStep}
+            prevStep={prevStep}
+            formData={formData}
+            updateFormData={updateFormData}
+            errors={errors}
+          />
+        </motion.div>
+      </AnimatePresence>
     );
   } else if (step === 3) {
     return (
-      <ThirdStep
-        nextStep={nextStep}
-        prevStep={prevStep}
-        formData={formData}
-        updateFormData={updateFormData}
-        errors={errors}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="step3"
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+        >
+          <ThirdStep
+            nextStep={nextStep}
+            prevStep={prevStep}
+            formData={formData}
+            updateFormData={updateFormData}
+            errors={errors}
+          />
+        </motion.div>
+      </AnimatePresence>
     );
   } else {
-    return <Success prevStep={prevStep} />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="success"
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+        >
+          <Success prevStep={prevStep} formData={formData} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 };
 

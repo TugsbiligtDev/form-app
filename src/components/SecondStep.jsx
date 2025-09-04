@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "./Input";
 import Button from "./Button";
 
@@ -32,7 +31,7 @@ const SecondStep = ({
               error={errors.email}
             />
             <Input
-              type="number"
+              type="text"
               text="Phone number "
               placeholder="Your phone number"
               value={formData.phoneNumber}

@@ -40,8 +40,7 @@ const MultiStepForm = () => {
       }
 
       if (!formData.userName.trim()) {
-        newErrors.userName =
-          "This username is already taken. Please choose another one.";
+        newErrors.userName = "Username is required. Please enter a username.";
       }
     }
 
@@ -52,8 +51,7 @@ const MultiStepForm = () => {
 
       if (
         !formData.phoneNumber.trim() ||
-        formData.phoneNumber.length < 8 ||
-        formData.phoneNumber.length > 8 ||
+        formData.phoneNumber.length !== 8 ||
         !/^\d+$/.test(formData.phoneNumber)
       ) {
         newErrors.phoneNumber = "Please enter a valid phone number.";

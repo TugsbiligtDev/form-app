@@ -14,12 +14,13 @@ const ThirdStep = ({
 
   const handleFile = (file) => {
     if (!file.type.startsWith("image/")) {
-      alert("Please upload an image file");
+      updateFormData("profileImageError", "Please upload an image file");
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert("Image size should be less than 5MB");
+      // Set error in the main form's error state
+      updateFormData("profileImageError", "Image size should be less than 5MB");
       return;
     }
 
@@ -27,6 +28,8 @@ const ThirdStep = ({
     reader.onload = (e) => {
       setImagePreview(e.target.result);
       updateFormData("profileImage", file);
+      // Clear any file validation errors on successful upload
+      updateFormData("profileImageError", "");
     };
     reader.readAsDataURL(file);
   };
@@ -40,6 +43,8 @@ const ThirdStep = ({
   const removeImage = () => {
     setImagePreview(null);
     updateFormData("profileImage", null);
+    // Clear any file validation errors when removing image
+    updateFormData("profileImageError", "");
   };
 
   return (
@@ -125,7 +130,7 @@ const ThirdStep = ({
             />
 
             <AnimatePresence>
-              {errors.profileImage && (
+              {(errors.profileImage || errors.profileImageError) && (
                 <motion.p
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -133,7 +138,7 @@ const ThirdStep = ({
                   transition={{ duration: 0.2 }}
                   className="text-red-500 text-sm"
                 >
-                  {errors.profileImage}
+                  {errors.profileImage || errors.profileImageError}
                 </motion.p>
               )}
             </AnimatePresence>

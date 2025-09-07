@@ -1,3 +1,5 @@
+import React from "react";
+
 const Success = ({ formData }) => {
   console.log("Form Data:", formData);
 

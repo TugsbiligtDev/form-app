@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const Button = ({ step, onNext, onBack }) => {
@@ -11,7 +10,7 @@ const Button = ({ step, onNext, onBack }) => {
           whileTap={{ scale: 0.98 }}
           className="flex justify-center items-center w-[40%] bg-white rounded-md border border-[#CBD5E1] text-[#202124] py-3 px-2.5 gap-1 cursor-pointer"
         >
-          <img src="./chevron_left.svg" alt="right icon" />
+          <img src="./chevron_left.svg" alt="left icon" />
           <p>Back</p>
         </motion.div>
       )}

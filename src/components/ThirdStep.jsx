@@ -19,7 +19,6 @@ const ThirdStep = ({
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      // Set error in the main form's error state
       updateFormData("profileImageError", "Image size should be less than 5MB");
       return;
     }
@@ -28,7 +27,6 @@ const ThirdStep = ({
     reader.onload = (e) => {
       setImagePreview(e.target.result);
       updateFormData("profileImage", file);
-      // Clear any file validation errors on successful upload
       updateFormData("profileImageError", "");
     };
     reader.readAsDataURL(file);
@@ -43,7 +41,6 @@ const ThirdStep = ({
   const removeImage = () => {
     setImagePreview(null);
     updateFormData("profileImage", null);
-    // Clear any file validation errors when removing image
     updateFormData("profileImageError", "");
   };
 
